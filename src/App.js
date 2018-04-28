@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import Home from './Home'
 import Setup from './Setup'
+import Game from './Game'
 
 class App extends Component {
   constructor (props) {
@@ -21,11 +22,11 @@ class App extends Component {
     this.setGameStarted = this.setGameStarted.bind(this)
   }
 
-  setupApp (nick, difficulty) {
+  setupApp (nick, difficulty, callback) {
     this.setState({
       nick,
       difficulty
-    })
+    }, callback)
   }
 
   setGameStarted () {
@@ -58,6 +59,15 @@ class App extends Component {
                   history={history}
                 />
               )
+            }
+          />
+          <Route
+            exact path='/game'
+            component={({ history }) =>
+              <Game
+                history={history}
+                appSettings={this.state}
+              />
             }
           />
         </Switch>

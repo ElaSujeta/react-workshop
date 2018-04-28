@@ -29,7 +29,8 @@ class Setup extends Component {
 
     const {
       props: {
-        setupApp
+        setupApp,
+        history
       },
       refs: {
         nickName: {
@@ -46,7 +47,9 @@ class Setup extends Component {
       return
     }
 
-    setupApp(nickNameVal, difficultyVal)
+    setupApp(nickNameVal, difficultyVal, () => {
+      history.push('/game')
+    })
   }
 
   render () {
