@@ -1,27 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import {
+  Link
+} from 'react-router-dom'
 
 const Home = props => {
   return (
     <div className='l-centered'>
-      <p>
-        Hello {props.name}!
-      </p>
-      <button
+      <Link
         className='c-start-link'
+        to='/setup'
       >
         Start
-      </button>
+      </Link>
     </div>
   )
-}
-
-Home.defaultProps = {
-  name: 'Default name'
-}
-
-Home.propTypes = {
-  name: PropTypes.string
 }
 
 export default Home

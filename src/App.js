@@ -1,4 +1,9 @@
 import React, { Component } from 'react'
+import {
+  BrowserRouter,
+  Route,
+  Switch
+} from 'react-router-dom'
 import Home from './Home'
 import Setup from './Setup'
 
@@ -23,14 +28,25 @@ class App extends Component {
 
   render () {
     return (
-      <span>
-        <Home
-          name={this.state.nick}
-        />
-        <Setup
-          setupApp={this.setupApp}
-        />
-      </span>
+      <BrowserRouter>
+        <Switch>
+          <Route
+            exact
+            path='/'
+            component={Home}
+          />
+          <Route
+            exact
+            path='/setup'
+            render={
+              () =>
+                <Setup
+                  setupApp={this.setupApp}
+                />
+              }
+          />
+        </Switch>
+      </BrowserRouter>
     )
   }
 }
