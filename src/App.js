@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
+import Home from './Home'
 
 class App extends Component {
   render () {
     return (
       <span>
-        Hello world!
+        <Home
+          name='Name'
+        />
       </span>
     )
   }
