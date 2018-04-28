@@ -13,6 +13,17 @@ class Setup extends Component {
     }
   }
 
+  componentDidMount () {
+    const {
+      history,
+      gameStarted
+    } = this.props
+
+    if (!gameStarted) {
+      history.replace('/')
+    }
+  }
+
   onSubmit (e) {
     e.preventDefault()
 
@@ -98,7 +109,9 @@ class Setup extends Component {
 }
 
 Setup.propTypes = {
-  setupApp: PropTypes.func
+  setupApp: PropTypes.func,
+  gameStarted: PropTypes.bool,
+  history: PropTypes.object
 }
 
 export default Setup

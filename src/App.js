@@ -13,16 +13,24 @@ class App extends Component {
 
     this.state = {
       nick: '',
-      difficulty: null
+      difficulty: null,
+      gameStarted: false
     }
 
     this.setupApp = this.setupApp.bind(this)
+    this.setGameStarted = this.setGameStarted.bind(this)
   }
 
   setupApp (nick, difficulty) {
     this.setState({
       nick,
       difficulty
+    })
+  }
+
+  setGameStarted () {
+    this.setState({
+      gameStarted: true
     })
   }
 
@@ -33,17 +41,24 @@ class App extends Component {
           <Route
             exact
             path='/'
-            component={Home}
+            component={() => (
+              <Home
+                setGameStarted={this.setGameStarted}
+              />
+            )}
           />
           <Route
             exact
             path='/setup'
             render={
-              () =>
+              ({ history }) => (
                 <Setup
                   setupApp={this.setupApp}
+                  gameStarted={this.state.gameStarted}
+                  history={history}
                 />
-              }
+              )
+            }
           />
         </Switch>
       </BrowserRouter>

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   Link
 } from 'react-router-dom'
@@ -9,11 +10,16 @@ const Home = props => {
       <Link
         className='c-start-link'
         to='/setup'
+        onClick={props.setGameStarted}
       >
         Start
       </Link>
     </div>
   )
+}
+
+Home.propTypes = {
+  setGameStarted: PropTypes.func
 }
 
 export default Home
