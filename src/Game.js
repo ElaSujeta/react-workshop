@@ -16,11 +16,13 @@ class Game extends Component {
       questions: [],
       currentQuestion: {},
       answers: [],
-      currentQuestionNumber: 0
+      currentQuestionNumber: 0,
+      answer: {}
     }
 
     this.fetchQuestions = this.fetchQuestions.bind(this)
     this.generateQuestion = this.generateQuestion.bind(this)
+    this.setCurrentAnswer = this.setCurrentAnswer.bind(this)
   }
 
   componentDidMount () {
@@ -69,6 +71,45 @@ class Game extends Component {
     })
   }
 
+  setCurrentAnswer (answer) {
+    return () => {
+      this.setState({ answer }, this.confirmCheckedAnswer)
+    }
+  }
+
+  confirmCheckedAnswer () {
+    const {
+      answer,
+      currentQuestion: {
+        correctAnswer
+      },
+      currentQuestionNumber
+    } = this.state
+
+    if (this.state.answer === '') {
+      return
+    }
+
+    if (answer.text === correctAnswer) {
+      if (currentQuestionNumber !== 11) {
+        this.setState(prevState => ({
+          currentQuestionNumber: prevState.currentQuestionNumber + 1,
+          answer: {}
+        }), this.generateQuestion)
+      } else {
+        this.setState({
+          isGameFinished: true,
+          hasWon: true
+        })
+      }
+    } else {
+      this.setState({
+        isGameFinished: true,
+        hasWon: false
+      })
+    }
+  }
+
   render () {
     const {
       currentQuestion: {
@@ -85,6 +126,7 @@ class Game extends Component {
               question={question}
               answers={answers}
               correctAnswer={correctAnswer}
+              onSelect={this.setCurrentAnswer}
             />
           </div>
         </Background>

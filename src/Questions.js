@@ -9,10 +9,14 @@ class Questions extends React.Component {
   }
 
   renderItem (item, index) {
+    const {
+      onSelect
+    } = this.props
     return (
       <li
         key={`${index}-answer`}
         className='c-question'
+        onClick={onSelect(item)}
       >
         <span className='c-question__label'>
           {String.fromCharCode(65 + index)}: {item.text}
@@ -44,9 +48,7 @@ Questions.propTypes = {
   answers: PropTypes.array,
   question: PropTypes.string,
   answer: PropTypes.object,
-  setCurrentAnswer: PropTypes.func,
-  isWaitingForNextQuestion: PropTypes.bool,
-  isWaitingForApproval: PropTypes.bool,
+  onSelect: PropTypes.func,
   correctAnswer: PropTypes.string
 }
 
