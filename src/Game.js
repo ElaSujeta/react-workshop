@@ -6,16 +6,21 @@ import {
 import Questions from './Questions'
 import Background from './Background'
 import SidePanel from './SidePanel'
+import { shuffle } from 'lodash'
 
 class Game extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      questions: []
+      questions: [],
+      currentQuestion: {},
+      answers: [],
+      currentQuestionNumber: 0
     }
 
     this.fetchQuestions = this.fetchQuestions.bind(this)
+    this.generateQuestion = this.generateQuestion.bind(this)
   }
 
   componentDidMount () {
@@ -41,18 +46,45 @@ class Game extends Component {
       .then(questions => {
         this.setState({
           questions
-        })
+        }, this.generateQuestion)
       })
   }
 
+  generateQuestion () {
+    const currentQuestion = this.state.questions[this.state.currentQuestionNumber]
+    const {
+      correctAnswer,
+      incorrectAnswers
+    } = currentQuestion
+
+    const answers = shuffle([correctAnswer, ...incorrectAnswers])
+      .map(answer => ({
+        text: answer,
+        disabled: false
+      }))
+
+    this.setState({
+      currentQuestion,
+      answers
+    })
+  }
+
   render () {
+    const {
+      currentQuestion: {
+        question,
+        correctAnswer
+      },
+      answers
+    } = this.state
     return (
       <div className='l-game'>
         <Background>
           <div className='c-questions'>
             <Questions
-              question={'To jest przykladowe pytanie'}
-              answers={['1', '2', '3', '4']}
+              question={question}
+              answers={answers}
+              correctAnswer={correctAnswer}
             />
           </div>
         </Background>

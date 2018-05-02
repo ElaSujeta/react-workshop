@@ -15,7 +15,7 @@ class Questions extends React.Component {
         className='c-question'
       >
         <span className='c-question__label'>
-          {String.fromCharCode(65 + index)}: {item}
+          {String.fromCharCode(65 + index)}: {item.text}
         </span>
       </li>
     )
