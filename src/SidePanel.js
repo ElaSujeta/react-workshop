@@ -1,17 +1,27 @@
-import React, { Component } from 'react'
+import React from 'react'
 import QuestionsList from './QuestionsList'
 import LifeLines from './LifeLines'
+import PropTypes from 'prop-types'
 
-class SidePanel extends Component {
+class SidePanel extends React.Component {
   render () {
+    const {
+      currentQuestionNumber
+    } = this.props
+
     return (
       <div className='c-side'>
-        Side panel
         <LifeLines />
-        <QuestionsList />
+        <QuestionsList
+          currentQuestionNumber={currentQuestionNumber}
+        />
       </div>
     )
   }
+}
+
+SidePanel.propTypes = {
+  currentQuestionNumber: PropTypes.number
 }
 
 export default SidePanel

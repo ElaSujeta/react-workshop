@@ -142,7 +142,9 @@ class Game extends Component {
               />
             </div>
           </Background>
-          <SidePanel />
+          <SidePanel
+            currentQuestionNumber={currentQuestionNumber}
+          />
         </div>
       )
   }
