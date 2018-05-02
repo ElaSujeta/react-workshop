@@ -7,7 +7,8 @@ import {
 const EndScreen = props => {
   const {
     hasWon,
-    currentQuestionNumber
+    currentQuestionNumber,
+    resetGame
   } = props
   const reward = hasWon
     ? 1000000
@@ -18,13 +19,21 @@ const EndScreen = props => {
       <p>
         You won {reward} $
       </p>
+      <button
+        type='button'
+        onClick={resetGame}
+        className='c-start-link'
+      >
+        Reset Game
+      </button>
     </div>
   )
 }
 
 EndScreen.propTypes = {
   hasWon: PropTypes.bool,
-  currentQuestionNumber: PropTypes.number
+  currentQuestionNumber: PropTypes.number,
+  resetGame: PropTypes.func
 }
 
 export default EndScreen

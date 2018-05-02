@@ -24,6 +24,7 @@ class Game extends Component {
     this.fetchQuestions = this.fetchQuestions.bind(this)
     this.generateQuestion = this.generateQuestion.bind(this)
     this.setCurrentAnswer = this.setCurrentAnswer.bind(this)
+    this.resetGame = this.resetGame.bind(this)
     this.setCurrentQuestionAnswers = this.setCurrentQuestionAnswers.bind(this)
   }
 
@@ -43,6 +44,12 @@ class Game extends Component {
     }
 
     this.fetchQuestions()
+  }
+
+  resetGame () {
+    this.props.resetGame(() => {
+      this.props.history.push('/')
+    })
   }
 
   fetchQuestions () {
@@ -137,6 +144,7 @@ class Game extends Component {
         <EndScreen
           hasWon={hasWon}
           currentQuestionNumber={currentQuestionNumber}
+          resetGame={this.resetGame}
         />
       )
       : (
@@ -164,7 +172,8 @@ class Game extends Component {
 
 Game.propTypes = {
   appSettings: PropTypes.object,
-  history: PropTypes.object
+  history: PropTypes.object,
+  resetGame: PropTypes.func
 }
 
 export default Game

@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 import {
   BrowserRouter,
   Route,
@@ -8,16 +9,19 @@ import Home from './Home'
 import Setup from './Setup'
 import Game from './Game'
 
-class App extends Component {
+const defaultState = {
+  nick: '',
+  difficulty: null,
+  gameStarted: false
+}
+
+class App extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      nick: '',
-      difficulty: null,
-      gameStarted: false
-    }
+    this.state = defaultState
 
+    this.resetGame = this.resetGame.bind(this)
     this.setupApp = this.setupApp.bind(this)
     this.setGameStarted = this.setGameStarted.bind(this)
   }
@@ -33,6 +37,10 @@ class App extends Component {
     this.setState({
       gameStarted: true
     })
+  }
+
+  resetGame (callback) {
+    this.setState({ ...defaultState }, callback)
   }
 
   render () {
@@ -67,6 +75,7 @@ class App extends Component {
               <Game
                 history={history}
                 appSettings={this.state}
+                resetGame={this.resetGame}
               />
             }
           />
@@ -74,6 +83,10 @@ class App extends Component {
       </BrowserRouter>
     )
   }
+}
+
+App.propTypes = {
+  history: PropTypes.object
 }
 
 export default App

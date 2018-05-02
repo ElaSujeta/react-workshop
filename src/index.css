@@ -230,6 +230,7 @@ body {
 }
 
 .c-start-link {
+  cursor: pointer;
   display: block;
   width: 200px;
   height: 40px;
@@ -255,6 +256,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 100vw;
   height: 100vh;
   background: #1561bf;
@@ -288,5 +290,4 @@ body {
 .c-lifelines button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-
 }
