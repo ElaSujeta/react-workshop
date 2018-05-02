@@ -11,6 +11,10 @@ class Game extends Component {
   constructor (props) {
     super(props)
 
+    this.state = {
+      questions: []
+    }
+
     this.fetchQuestions = this.fetchQuestions.bind(this)
   }
 
@@ -46,7 +50,10 @@ class Game extends Component {
       <div className='l-game'>
         <Background>
           <div className='c-questions'>
-            <Questions />
+            <Questions
+              question={'To jest przykladowe pytanie'}
+              answers={['1', '2', '3', '4']}
+            />
           </div>
         </Background>
         <SidePanel />
