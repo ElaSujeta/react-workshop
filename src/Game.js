@@ -7,6 +7,7 @@ import Questions from './Questions'
 import Background from './Background'
 import SidePanel from './SidePanel'
 import { shuffle } from 'lodash'
+import EndScreen from './EndScreen'
 
 class Game extends Component {
   constructor (props) {
@@ -116,23 +117,34 @@ class Game extends Component {
         question,
         correctAnswer
       },
-      answers
+      answers,
+      isGameFinished,
+      hasWon,
+      currentQuestionNumber
     } = this.state
-    return (
-      <div className='l-game'>
-        <Background>
-          <div className='c-questions'>
-            <Questions
-              question={question}
-              answers={answers}
-              correctAnswer={correctAnswer}
-              onSelect={this.setCurrentAnswer}
-            />
-          </div>
-        </Background>
-        <SidePanel />
-      </div>
-    )
+
+    return isGameFinished
+      ? (
+        <EndScreen
+          hasWon={hasWon}
+          currentQuestionNumber={currentQuestionNumber}
+        />
+      )
+      : (
+        <div className='l-game'>
+          <Background>
+            <div className='c-questions'>
+              <Questions
+                question={question}
+                answers={answers}
+                correctAnswer={correctAnswer}
+                onSelect={this.setCurrentAnswer}
+              />
+            </div>
+          </Background>
+          <SidePanel />
+        </div>
+      )
   }
 }
 

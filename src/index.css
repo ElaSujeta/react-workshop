@@ -261,3 +261,11 @@ body {
   color: #491c61;
   border-color: #491c61;
 }
+
+.l-end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
