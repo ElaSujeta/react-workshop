@@ -15,8 +15,8 @@ class Questions extends React.Component {
     return (
       <li
         key={`${index}-answer`}
-        className='c-question'
-        onClick={onSelect(item)}
+        className={`c-question ${item.disabled ? 'is-disabled' : ''}`}
+        onClick={item.disabled ? null : onSelect(item)}
       >
         <span className='c-question__label'>
           {String.fromCharCode(65 + index)}: {item.text}

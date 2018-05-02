@@ -85,20 +85,9 @@ body {
   color: #1561bf;
 }
 
-.c-question.is-active {
-  color: #1561bf;
-  background-color: #f3bf4b;
-  box-shadow: inset 4px 4px 20px 0 #843c01, inset -4px -4px 20px 0 #843c01;
-}
-.c-question.is-correct {
-  color: #fff;
-  background-color: #80e800;
-  box-shadow: inset 4px 4px 20px 0 #0b4502, inset -4px -4px 20px 0 #0b4502;
-}
-.c-question.is-invalid {
-  color: #fff;
-  background-color: #dd4444;
-  box-shadow: inset 4px 4px 20px 0 #ff0000, inset -4px -4px 20px 0 #ff0000;
+.c-question.is-disabled {
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .c-question__control {
@@ -268,4 +257,36 @@ body {
   justify-content: center;
   width: 100vw;
   height: 100vh;
+  background: #1561bf;
+  color: #fff;
+  font-size: 50px;
+}
+
+.c-lifelines {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.c-lifelines button {
+  cursor: pointer;
+  width: 30%;
+  display: block;
+  font-size: 10px;
+  border: 1px solid #fff;
+  background: #1561bf;
+  color: #fff;
+  padding: 6px;
+  transition: 220ms;
+}
+
+.c-lifelines button:hover:not(:disabled) {
+  background: #fff;
+  color: #1561bf;
+}
+
+.c-lifelines button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+
 }

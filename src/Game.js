@@ -24,6 +24,7 @@ class Game extends Component {
     this.fetchQuestions = this.fetchQuestions.bind(this)
     this.generateQuestion = this.generateQuestion.bind(this)
     this.setCurrentAnswer = this.setCurrentAnswer.bind(this)
+    this.setCurrentQuestionAnswers = this.setCurrentQuestionAnswers.bind(this)
   }
 
   componentDidMount () {
@@ -111,6 +112,14 @@ class Game extends Component {
     }
   }
 
+  setCurrentQuestionAnswers (answers) {
+    this.setState({
+      answers: [
+        ...answers
+      ]
+    })
+  }
+
   render () {
     const {
       currentQuestion: {
@@ -144,6 +153,9 @@ class Game extends Component {
           </Background>
           <SidePanel
             currentQuestionNumber={currentQuestionNumber}
+            correctAnswer={correctAnswer}
+            answers={answers}
+            setCurrentQuestionAnswers={this.setCurrentQuestionAnswers}
           />
         </div>
       )

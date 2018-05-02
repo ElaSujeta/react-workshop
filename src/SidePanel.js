@@ -6,12 +6,20 @@ import PropTypes from 'prop-types'
 class SidePanel extends React.Component {
   render () {
     const {
-      currentQuestionNumber
+      currentQuestionNumber,
+      correctAnswer,
+      answers,
+      setCurrentQuestionAnswers
     } = this.props
 
     return (
       <div className='c-side'>
-        <LifeLines />
+        <LifeLines
+          correctAnswer={correctAnswer}
+          answers={answers}
+          setCurrentQuestionAnswers={setCurrentQuestionAnswers}
+          currentQuestionNumber={currentQuestionNumber}
+        />
         <QuestionsList
           currentQuestionNumber={currentQuestionNumber}
         />
@@ -21,7 +29,10 @@ class SidePanel extends React.Component {
 }
 
 SidePanel.propTypes = {
-  currentQuestionNumber: PropTypes.number
+  currentQuestionNumber: PropTypes.number,
+  correctAnswer: PropTypes.string,
+  answers: PropTypes.array,
+  setCurrentQuestionAnswers: PropTypes.func
 }
 
 export default SidePanel
